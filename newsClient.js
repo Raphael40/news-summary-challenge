@@ -2,12 +2,12 @@ const apiKey = require('./apiKey');
 
 class NewsClient {
 
-  fetchNewsData(query, callback) {
+  fetchNewsData(query) {
     return fetch(`http://content.guardianapis.com/search?order-by=newest&q=${query}&api-key=${apiKey}`)
     .then((response) => response.json())
     .then((newsData) => { 
       console.log(newsData);
-      callback(newsData)
+      return newsData
     })
   }
 }

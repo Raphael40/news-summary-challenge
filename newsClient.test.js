@@ -7,23 +7,18 @@ describe ('Client class', () => {
     fetch.resetMocks();
   });
 
-  it("calls fetch and loads data", (done) => {
+  it("calls fetch and loads data", async () => {
     const client = new NewsClient();
-
+  
     const mockResponse = {
       response: {
         orderBy: "newest",
       }
     };    
-
-    fetch.mockResponse(
-      JSON.stringify(mockResponse)
-    );
-
-    client.fetchNewsData('politics', (returnedDataFromApi) => {
-      expect(returnedDataFromApi.response).toHaveProperty('orderBy', 'newest');
-
-      done();
-    });
+  
+    fetch.mockResponse(JSON.stringify(mockResponse));
+  
+    const returnedDataFromApi = await client.fetchNewsData('politics');
+    expect(returnedDataFromApi.response).toHaveProperty('orderBy', 'newest');
   });
 })
