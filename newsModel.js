@@ -9,6 +9,7 @@ class NewsModel {
   load(query) {
     return this.client.fetchNewsData(query).then(data => {
       this.news = data;
+      // console.log(this.news)
     });
   }
 
