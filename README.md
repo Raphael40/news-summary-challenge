@@ -40,6 +40,6 @@ To start the aplication simply run the html file in your browser
 --------------------------------------------------------------------
 See these screenshots for a demonstration:
 
-![Technology](./images/Screenshot 2023-08-02 at 11.44.10.png)
+![Technology](./images/Screenshot2023-08-02at11.44.10.png)
 
-![Politics](./images/Screenshot 2023-08-02 at 11.44.35)
+![Politics](./images/Screenshot2023-08-02at11.44.35.png)
