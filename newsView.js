@@ -16,29 +16,44 @@ class NewsView {
     const existingNews = document.querySelectorAll('.article')
     existingNews.forEach((article) => {article.remove()})
 
-    this.model.load(query).then(() => {
-      const newsData = this.model.getNewsData()
+    const createArticleElement = (article) => {
+      const div = document.createElement('div');
+      div.classList.add('article');
+  
+      const h2 = document.createElement('h2');
+      h2.textContent = article.webTitle;
+      h2.classList.add('webTitle');
+      div.appendChild(h2);
+  
+      const img = document.createElement('img');
+      img.src = article.fields.thumbnail;
+      div.appendChild(img);
+  
+      const p = document.createElement('p');
+      p.textContent = article.fields.bodyText;
+      div.appendChild(p);
+  
+      return div;
+    };
+  
+  const updateNewsDisplay = (model) => {
+    const newsData = model.getNewsData();
+    const mainContainerElement = document.getElementById('main-container');
+    const newsInput = document.querySelector('#news-input');
 
-      console.log(this.model.getNewsData().response.results)
-      console.log(this.model.getNewsData())
+    newsData.response.results.forEach((article) => {
+        const articleElement = createArticleElement(article);
+        mainContainerElement.appendChild(articleElement);
+    });
 
-      newsData.response.results.forEach((article) => {
-        let div = document.createElement('div')
-        let h2 = document.createElement('h2')
-        let img = document.createElement('img')
-        let p = document.createElement('p')
-        h2.textContent = article.webTitle
-        p.textContent = article.fields.bodyText
-        img.src = article.fields.thumbnail
-        h2.classList.add('webTitle')
-        div.classList.add('article')
-        div.insertBefore(h2, div.firstChild);
-        div.append(img)
-        div.append(p)
-        this.mainContainerElement.append(div)
-        document.querySelector('#news-input').value = ''
-      })
-    })
+    newsInput.value = '';
+  };
+  
+  // Usage
+  this.model.load(query)
+    .then(() => {
+        updateNewsDisplay(this.model);
+    });
 
 
   }
