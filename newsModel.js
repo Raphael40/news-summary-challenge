@@ -9,7 +9,7 @@ class NewsModel {
   async load(query) {
     let data = await this.client.fetchNewsData(query)
     
-    this.news = await data
+    this.news = data
     console.log(this.news)
     return this.news
   }
