@@ -1,3 +1,7 @@
 .article {
   margin: 10px;
 }
+
+.link { 
+  display: block;
+}
