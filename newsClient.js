@@ -2,12 +2,16 @@ const apiKey = require('./apiKey');
 
 class NewsClient {
 
-  fetchNewsData(query) {
-    return fetch(`http://content.guardianapis.com/search?order-by=newest&show-fields=bodyText,thumbnail&q=${query}&api-key=${apiKey}`)
-    .then((response) => response.json())
-    .then((newsData) => { 
-      return newsData
-    })
+  async fetchNewsData(query) {
+    let response = await fetch(`http://content.guardianapis.com/search?order-by=newest&show-fields=bodyText,thumbnail&q=${query}&api-key=${apiKey}`)
+    const newsData = await response.json()
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    console.log(newsData)
+    return newsData
   }
 }
 

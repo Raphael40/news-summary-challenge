@@ -6,11 +6,12 @@ class NewsModel {
     this.news = null;
   }
 
-  load(query) {
-    return this.client.fetchNewsData(query).then(data => {
-      this.news = data;
-      // console.log(this.news)
-    });
+  async load(query) {
+    let data = await this.client.fetchNewsData(query)
+    
+    this.news = await data
+    console.log(this.news)
+    return this.news
   }
 
   getNewsData() {

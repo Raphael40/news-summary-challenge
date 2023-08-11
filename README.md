@@ -35,7 +35,12 @@ npm install
 
 ## Usage
 
-To start the aplication simply run the html file in your browser
+To start the aplication simply run the html file in your browser.
+
+If changes are made to the files update te bundler file by running:
+```bash
+npm run build
+```
 
 --------------------------------------------------------------------
 See these screenshots for a demonstration:
